@@ -28,37 +28,44 @@ module.exports = {
                 sequence.push(nextFibonacci);
             }
         }
-        calculateFibonacci(N);
+        calculateFibonacci(n);
         return sequence;
     },
 
     getNthPrimeNum: function (n) {
-        var primes = [];
-
-        function isPrime(number) {
-            for (var i = 2; i <= Math.sqrt(number); i++) {
-                if (number % i === 0) {
-                    return false;
-                }
-            }
-            return true;
-        }
-
+        let primes = [];
         function calculateNthPrime() {
-            var count = 0;
-            var number = 2;
-
-            while (count < N) {
-                if (isPrime(number)) {
+            let count = 0;
+            let number = 2;
+            while (count < n) {
+                if (this.isPrimeNum(number)) {
                     primes.push(number);
                     count++;
                 }
                 number++;
             }
         }
-
         calculateNthPrime();
+        return primes[n - 1];
+    },
 
-        return primes[N - 1];
+    getPrimeSequenceTo: function (n) {
+        let primes = [];
+        function calculatePrimes() {
+            for (let i = 2; i < N; i++) {
+                if (this.isPrimeNum(i)) {
+                    primes.push(i);
+                }
+            }
+        }
+        calculatePrimes();
+        return primes;
+    },
+
+    isPrimeNum: function (n) {
+        for (let i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i === 0) return false;
+        }
+        return true;
     }
 }
