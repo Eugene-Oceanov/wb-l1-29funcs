@@ -1,7 +1,4 @@
 class Shape {
-    constructor(title) {
-        this.title = title;
-    }
 
     area() {
         // ??? не совсем понял. разные фигуры имеют разные формулы вычисления площали и периметра. пусть будет пустой метод, что бы было что наследовать. с периметром то же самое
@@ -47,6 +44,7 @@ class Circle extends Shape {
 
 class Triangle extends Shape {
     constructor(sideA, sideB, sideC) {
+        super();
         this.sideA = sideA;
         this.sideB = sideB;
         this.sideC = sideC;
