@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            overflow: hidden;
+            background: rgb(2, 0, 36);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        .container {
+            position: relative;
+            width: 80vh;
+            height: 80vh;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sun {
+            width: 200px;
+            height: 200px;
+            background: #ffac3b;
+            border-radius: 50%;
+            box-shadow: 0 0 130px #fff;
+            animation: sun 3s linear infinite;
+        }
+
+        .orbit {
+            position: absolute;
+            border-style: solid;
+            border-color: #fff transparent transparent transparent;
+            border-width: 0.1em 0.1em 0 0;
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            animation: orbit 36.5s linear infinite;
+        }
+
+        .planet {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            box-shadow: 0 0 0.7em #fff;
+            top: 9.5%;
+            right: 9.5%;
+            background: #07FDEB;
+            width: 50px;
+            height: 50px;
+        }
+
+        @keyframes sun {
+            0% {
+                box-shadow: 0 0 70px #fff;
+            }
+
+            50% {
+                box-shadow: 0 0 130px #fff;
+            }
+
+            100% {
+                box-shadow: 0 0 70px #fff;
+            }
+        }
+
+        @keyframes orbit {
+            to {
+                rotate: 360deg
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="sun"></div>
+        <div class="orbit">
+            <div class="planet"></div>
+        </div>
+    </div>
+
+    <script>
+        for (let i = 0; i <= 500; i++) {
+            let starSize = randomInteger(1, 4);
+            let star = document.createElement("DIV");
+            star.classList.add("star");
+            star.style.width = `${starSize}px`;
+            star.style.height = `${starSize}px`;
+            star.style.top = `${randomInteger(0, window.innerHeight)}px`;
+            star.style.left = `${randomInteger(0, window.innerWidth)}px`;
+            document.body.appendChild(star);
+        }
+        function randomInteger(min, max) {
+            let rand = min + Math.random() * (max + 1 - min);
+            return Math.floor(rand);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+    <style>
+        #wrapper {
+            padding-top: 25px;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        #pagination-wrapper {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin: 0 auto;
+            margin-top: 15px;
+        }
+
+        #pagination-wrapper p {
+            cursor: pointer;
+        }
+
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <table id="table">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Zip</th>
+                </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+        </table>
+        <div id="pagination-wrapper"></div>
+    </div>
+
+    <script>
+        const tableWrapper = document.getElementById("tbody");
+        const paginationWrapper = document.getElementById("pagination-wrapper");
+        const paginationStep = 50;
+        let currentPage = 1;
+        let startItem = 1;
+        let finalItem = 50;
+
+        async function getData() {
+            let json = await fetch("http://www.filltext.com/?rows=1000&fname=%7BfirstName%7D&lname=%7BlastName%7D&tel=%7Bphone%7Cformat%7D&address=%7BstreetAddress%7D&city=%7Bcity%7D&state=%7BusState%7Cabbr%7D&zip=%7Bzip%7D&pretty=true");
+            let data = await json.json();
+            getPage(data)
+        }
+
+        getData();
+
+        function getTable(arr) {
+            tableWrapper.innerHTML = "";
+            for (let i = startItem; i < finalItem; i++) {
+                const row = document.createElement("TR");
+                row.innerHTML = `<td>${arr[i].fname}</td>
+                                <td>${arr[i].lname}</td>
+                                <td>${arr[i].tel}</td>
+                                <td>${arr[i].address}</td>
+                                <td>${arr[i].city}</td>
+                                <td>${arr[i].state}</td>
+                                <td>${arr[i].zip}</td>`;
+                tableWrapper.append(row);
+            }
+        }
+
+        function getPagination(arr) {
+            paginationWrapper.innerHTML = "";
+            let paginationLength = arr.length / paginationStep;
+            for (let i = 1; i <= paginationLength; i++) {
+                const paginationItem = document.createElement("P");
+                paginationItem.innerText = i;
+                if (i === currentPage) paginationItem.classList.add("active");
+                paginationWrapper.append(paginationItem);
+                paginationItem.onclick = () => {
+                    currentPage = i;
+                    getPage(arr);
+                    window.scrollTo(0, 0);
+                }
+            }
+        }
+
+        function getPage(arr) {
+            startItem = (currentPage - 1) * paginationStep;
+            finalItem = currentPage * paginationStep - 1;
+            getTable(arr);
+            getPagination(arr);
+        }
+    </script>
+</body>
+
+</html>

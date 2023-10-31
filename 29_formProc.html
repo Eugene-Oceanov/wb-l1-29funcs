@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="http://some-site.com/" method="get">
+        <input type="text" id="name-input">
+        <input type="email" id="email-input">
+        <input type="submit" value="Submit" id="submit">
+    </form>
+
+    <script>
+        document.querySelector("form").onsubmit = (e) => {
+            e.preventDefault();
+            if (document.querySelector("#name-input").value && document.querySelector("#email-input").value) {
+                const user = {
+                    name: document.querySelector("#name-input").value,
+                    email: document.querySelector("#email-input").value,
+                }
+                alert(`Данные отправлены. Имя: ${user.name}, e-mail ${user.email}`)
+                document.querySelector("#name-input").value = "";
+                document.querySelector("#email-input").value = "";
+            } else alert("Заполните форму")
+
+        }
+    </script>
+</body>
+
+</html>
