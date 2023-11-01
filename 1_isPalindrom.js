@@ -7,3 +7,8 @@ function isPalindrom(str) {
     if (str === strReverse) return true;
     else return false;
 }
+
+console.log(isPalindrom("Аргентина манит негра")); // true
+console.log(isPalindrom("ШалАш")); // true
+console.log(isPalindrom("Аргентина манит темнокожего человека")); // false
+console.log(isPalindrom("Шалашик")); // false

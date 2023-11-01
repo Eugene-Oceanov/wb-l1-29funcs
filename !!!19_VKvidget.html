@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        const ket = "c1501755c1501755c150175588c2463f63cc150c1501755a412d2db09c66d01f0ebd2a2";
+
+        async function x() {
+            let json = await fetch("https://api.vk.com/method/wall.get?owner_id=-92337511&domain=vk.com&offset=0&count=1&filter=all&access_token=c1501755c1501755c150175588c2463f63cc150c1501755a412d2db09c66d01f0ebd2a2&v=5.154");
+            let data = await json.json();
+            return data;
+        }
+
+        let y = x()
+        y.then(data => console.log(data))
+    </script>
+</body>
+
+</html>

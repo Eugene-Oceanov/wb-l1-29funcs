@@ -1,7 +1,9 @@
+// надеюсь я все верно понял. Какое то резкое падение сложности, в сравнении с предыдущими задачами. К тому же там уже были подобные задания с замыканиями
+// если я что то неверно понял (в этом и последующих заданиях), я исправлю и доработаю
 function closure() {
     const strArr = [];
-        return function(arr) {
-            arr.forEach(item => strArr.push(item()));
-            return strArr;
-        }
+    return function (arr) {
+        arr.forEach(item => strArr.push(item()));
+        return strArr;
+    }
 }

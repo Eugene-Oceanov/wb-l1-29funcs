@@ -10,3 +10,8 @@ function isStrangeNum(num) {
     if (sum === num) return true;
     else return false;
 }
+
+console.log(isStrangeNum(6)); // true
+console.log(isStrangeNum(8128)); // true
+console.log(isStrangeNum(27)); // false
+console.log(isStrangeNum(495)); // false
